@@ -1,0 +1,19 @@
+.body {
+  margin-top: 100px;
+  background-color: aqua;
+  box-sizing: border-box;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  max-width: 1200px;
+  width: 100%;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-right: auto;
+  margin-left: auto;
+  background: transparent;
+  /*  margin-top: 120px; */
+  justify-content: center;
+}
