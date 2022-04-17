@@ -21,24 +21,33 @@ const Main = () => {
       return elem.rate;
     });
 
-    const currenciesRes = res.map((elem) => {
+    const currenciesRes = res.map((elem, index) => {
       return {
         currency: elem.txt,
         value: elem.rate,
         id: elem.r030,
-        date: dateToLocal,
-        yestarday: yestardateToLocal,
+        difference: (
+          (elem.rate / currenciesResYestarday[index]) * 100 -
+          100
+        ).toFixed(2),
+        data: [
+          {
+            dateCur: yestardateToLocal,
+            value: currenciesResYestarday[index],
+          },
+          { dateCur: dateToLocal, value: elem.rate },
+        ],
       };
     });
 
-    const unityRes = currenciesRes.map((item, index) => ({
+    /*  const unityRes = currenciesRes.map((item, index) => ({
       ...item,
       valueYestarday: currenciesResYestarday[index],
       difference: (
         (item.value / currenciesResYestarday[index]) * 100 -
         100
       ).toFixed(2),
-    }));
+    })); */
 
     /* const { UAH, EUR, RUB, BYN, PLN, KZT } = res.conversion_rates;
     console.log(UAH, EUR, RUB, BYN, PLN, KZT);
@@ -54,26 +63,16 @@ const Main = () => {
  */
     /* setCurrencies(currenciesRes); */
 
-    setCurrencies(unityRes);
+    setCurrencies(currenciesRes);
   };
 
   useEffect(() => {
     getResponse();
   }, []);
-
+  console.log(currencies);
   return (
-    <div className={style.body}>
-      <div className={style.row}>
-        {/* <CardGraphics
-          currency={currency}
-          value={value}
-          valueYestarday={valueYestarday}
-          id={id}
-          date={date}
-          yestarday={yestarday}
-          difference={difference}
-        /> */}
-      </div>
+    <div className={style.cardconteiner}>
+      {currencies && <CardGraphics currencies={currencies} />}
     </div>
   );
 };

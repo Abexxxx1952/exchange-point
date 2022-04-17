@@ -15,74 +15,12 @@ import style from "./GraphicOneValute.module.css";
 const GraphicOneValute = () => {
   const data = [
     {
-      id: "japan",
-      color: "hsl(309, 70%, 50%)",
-      data: [
-        {
-          x: "plane",
-          y: 128,
-        },
-        {
-          x: "helicopter",
-          y: 148,
-        },
-        {
-          x: "boat",
-          y: 230,
-        },
-        {
-          x: "train",
-          y: 249,
-        },
-        {
-          x: "subway",
-          y: 158,
-        },
-        {
-          x: "bus",
-          y: 234,
-        },
-        {
-          x: "car",
-          y: 259,
-        },
-        {
-          x: "moto",
-          y: 91,
-        },
-        {
-          x: "bicycle",
-          y: 143,
-        },
-        {
-          x: "horse",
-          y: 9,
-        },
-        {
-          x: "skateboard",
-          y: 143,
-        },
-        {
-          x: "others",
-          y: 27,
-        },
-      ],
+      dateCur: "Date A",
+      Currensic: 4000,
     },
-  ];
-  const dataa = [
     {
-      id: "Австралійський долар",
-      color: "hsl(185°, 82%, 56%)",
-      data: [
-        {
-          x: "15.04.2022",
-          y: 21.7686,
-        },
-        {
-          x: "16.04.2022",
-          y: 21.8183,
-        },
-      ],
+      dateCur: "Date B",
+      Currensic: 3000,
     },
   ];
 
@@ -95,25 +33,16 @@ const GraphicOneValute = () => {
     const currenciesResYestarday = resYestarday.map((elem) => {
       return elem.rate;
     });
+    let totalres = [];
+    res.forEach((elem, index) => {
+      totalres.push({
+        dateCur: yestardateToLocal,
+        [elem.txt]: currenciesResYestarday[index],
+      });
 
-    const currenciesRes = res.map((elem, index) => {
-      return {
-        id: elem.txt,
-        color: "hsl(185°, 82%, 56%)",
-        data: [
-          {
-            x: yestardateToLocal,
-            y: currenciesResYestarday[index],
-          },
-          {
-            x: dateToLocal,
-            y: elem.rate,
-          },
-        ],
-      };
+      totalres.push({ dateCur: dateToLocal, [elem.txt]: elem.rate });
     });
 
-    console.log(currenciesRes);
     /* const { UAH, EUR, RUB, BYN, PLN, KZT } = res.conversion_rates;
     console.log(UAH, EUR, RUB, BYN, PLN, KZT);
 
@@ -128,17 +57,16 @@ const GraphicOneValute = () => {
  */
     /* setCurrencies(currenciesRes); */
 
-    setCurrencies(currenciesRes);
+    setCurrencies(...totalres);
   };
 
   useEffect(() => {
     getResponse();
   }, []);
-  console.log(currencies);
 
   return (
     <div className={style.container}>
-      {currencies & <Graphic data={currencies} />}
+      <Graphic data={data} />
     </div>
   );
 };

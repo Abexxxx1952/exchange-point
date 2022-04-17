@@ -1,134 +1,61 @@
-import { ResponsiveLine } from "@nivo/line";
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  Legend,
+  Label,
+} from "recharts";
 
 import React from "react";
 
 const Graphic = ({ data }) => {
   console.log(data);
   return (
-    <ResponsiveLine
-      data={data}
-      margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
-      xScale={{ type: "point" }}
-      yScale={{
-        type: "linear",
-        min: "auto",
-        max: "auto",
-        stacked: true,
-        reverse: false,
-      }}
-      yFormat=" >-.2f"
-      curve="monotoneX"
-      axisTop={null}
-      axisRight={null}
-      axisBottom={{
-        orient: "bottom",
-        tickSize: 5,
-        tickPadding: 5,
-        tickRotation: 0,
-        legend: "Date",
-        legendOffset: 36,
-        legendPosition: "middle",
-      }}
-      axisLeft={{
-        orient: "left",
-        tickSize: 5,
-        tickPadding: 5,
-        tickRotation: 0,
-        legend: "Value",
-        legendOffset: -40,
-        legendPosition: "middle",
-      }}
-      lineWidth={4}
-      pointSize={10}
-      pointColor={{ theme: "background" }}
-      pointBorderWidth={3}
-      pointBorderColor={{ from: "serieColor" }}
-      pointLabelYOffset={-12}
-      enableArea={true}
-      useMesh={true}
-      legends={[
-        {
-          anchor: "top",
-          direction: "column",
-          justify: false,
-          translateX: 42,
-          translateY: -39,
-          itemWidth: 100,
-          itemHeight: 20,
-          itemsSpacing: 4,
-          symbolSize: 20,
-          symbolShape: "circle",
-          itemDirection: "left-to-right",
-          itemTextColor: "#777",
-          effects: [
-            {
-              on: "hover",
-              style: {
-                itemBackground: "rgba(0, 0, 0, .03)",
-                itemOpacity: 1,
-              },
-            },
-          ],
-        },
-      ]}
-    />
+    <ResponsiveContainer width="100%" height="100%">
+      <AreaChart
+        width={800}
+        height={600}
+        data={data}
+        margin={{
+          top: 10,
+          right: 25,
+          left: 20,
+          bottom: 30,
+        }}
+      >
+        <defs>
+          <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor="#cfe4e6" stopOpacity={0.6} />
+            <stop offset="95%" stopColor="#cfe4e6" stopOpacity={0.05} />
+          </linearGradient>
+        </defs>
+        <Area
+          type="monotone"
+          dataKey="value"
+          stroke="#8884d8"
+          fillOpacity={1}
+          fill="url(#colorUv)"
+        />
+        <CartesianGrid strokeDasharray="3 3 " vertical={false} />
+        <XAxis dataKey="dateCur" axisLine={false} tickLine={false}>
+          <Label value="Date" offset={0} position="bottom" />
+        </XAxis>
+        <YAxis
+          axisLine={false}
+          tickLine={false}
+          type="number"
+          domain={["dataMin", "dataMax"]}
+        >
+          <Label value="Value" offset={0} angle={-90} position="left" />
+        </YAxis>
+        <Tooltip />
+      </AreaChart>
+    </ResponsiveContainer>
   );
 };
 
 export default Graphic;
-
-/* [
-  {
-    "id": "japan",
-    "color": "hsl(309, 70%, 50%)",
-    "data": [
-      {
-        "x": "plane",
-        "y": 128
-      },
-      {
-        "x": "helicopter",
-        "y": 148
-      },
-      {
-        "x": "boat",
-        "y": 230
-      },
-      {
-        "x": "train",
-        "y": 249
-      },
-      {
-        "x": "subway",
-        "y": 158
-      },
-      {
-        "x": "bus",
-        "y": 234
-      },
-      {
-        "x": "car",
-        "y": 259
-      },
-      {
-        "x": "moto",
-        "y": 91
-      },
-      {
-        "x": "bicycle",
-        "y": 143
-      },
-      {
-        "x": "horse",
-        "y": 9
-      },
-      {
-        "x": "skateboard",
-        "y": 143
-      },
-      {
-        "x": "others",
-        "y": 27
-      }
-    ]
-  }] */
