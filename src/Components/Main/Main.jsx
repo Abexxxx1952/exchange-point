@@ -33,9 +33,9 @@ const Main = () => {
         data: [
           {
             dateCur: yestardateToLocal,
-            value: currenciesResYestarday[index],
+            value: currenciesResYestarday[index].toFixed(2),
           },
-          { dateCur: dateToLocal, value: elem.rate },
+          { dateCur: dateToLocal, value: elem.rate.toFixed(2) },
         ],
       };
     });

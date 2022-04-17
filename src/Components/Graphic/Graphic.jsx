@@ -24,7 +24,7 @@ const Graphic = ({ data }) => {
           top: 10,
           right: 25,
           left: 20,
-          bottom: 30,
+          bottom: 20,
         }}
       >
         <defs>
@@ -34,7 +34,7 @@ const Graphic = ({ data }) => {
           </linearGradient>
         </defs>
         <Area
-          type="monotone"
+          type="basis"
           dataKey="value"
           stroke="#8884d8"
           fillOpacity={1}
@@ -48,7 +48,8 @@ const Graphic = ({ data }) => {
           axisLine={false}
           tickLine={false}
           type="number"
-          domain={["dataMin", "dataMax"]}
+          domain={["dataMin-0.02", "dataMax"]}
+          padding={{ bottom: 10 }}
         >
           <Label value="Value" offset={0} angle={-90} position="left" />
         </YAxis>
