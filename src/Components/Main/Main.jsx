@@ -1,5 +1,6 @@
 import style from "./Main.module.css";
 import CardGraphics from "../CardGraphics/CardGraphics";
+import CheckBox from "./CheckBox/CheckBox";
 
 import { useEffect, useState } from "react";
 
@@ -13,7 +14,7 @@ import { getApi, getApiDate } from "../../Services/getApi";
 const Main = () => {
   const [currencies, setCurrencies] = useState(null);
 
-  const getResponse = async () => {
+  const getResponseRechart = async () => {
     const res = await getApi();
     const resYestarday = await getApiDate(requestDate);
 
@@ -67,11 +68,12 @@ const Main = () => {
   };
 
   useEffect(() => {
-    getResponse();
+    getResponseRechart();
   }, []);
   console.log(currencies);
   return (
     <div className={style.cardconteiner}>
+      <CheckBox />
       {currencies && <CardGraphics currencies={currencies} />}
     </div>
   );

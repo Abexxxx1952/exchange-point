@@ -1,18 +1,7 @@
 import style from "./CardGraphics.module.css";
-import Graphic from "../Graphic/Graphic";
+import GraphicRechart from "../Graphic/GraphicRechart";
 
 const CardGraphics = ({ currencies }) => {
-  const dataa = [
-    {
-      dateCur: "Date A",
-      Currensic: 4000,
-    },
-    {
-      dateCur: "Date B",
-      Currensic: 3000,
-    },
-  ];
-
   return (
     <div className={style.body}>
       <div className={style.row}>
@@ -29,7 +18,7 @@ const CardGraphics = ({ currencies }) => {
                 <span> {difference} %</span>
               </div>
               <div className={style.card__graphic}>
-                <Graphic data={data} />
+                <GraphicRechart data={data} />
               </div>
             </div>
           )

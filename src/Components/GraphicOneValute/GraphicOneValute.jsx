@@ -1,5 +1,5 @@
 import React from "react";
-import Graphic from "../Graphic/Graphic";
+import GraphicRechart from "../Graphic/GraphicRechart";
 
 import { useEffect, useState } from "react";
 
@@ -66,7 +66,7 @@ const GraphicOneValute = () => {
 
   return (
     <div className={style.container}>
-      <Graphic data={data} />
+      <GraphicRechart data={data} />
     </div>
   );
 };

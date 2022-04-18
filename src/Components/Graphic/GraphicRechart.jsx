@@ -12,7 +12,7 @@ import {
 
 import React from "react";
 
-const Graphic = ({ data }) => {
+const GraphicRechart = ({ data }) => {
   console.log(data);
   return (
     <ResponsiveContainer width="100%" height="100%">
@@ -59,4 +59,4 @@ const Graphic = ({ data }) => {
   );
 };
 
-export default Graphic;
+export default GraphicRechart;
