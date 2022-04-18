@@ -1,6 +1,5 @@
 import style from "./Main.module.css";
 import CardGraphics from "../CardGraphics/CardGraphics";
-import CheckBox from "./CheckBox/CheckBox";
 
 import { useEffect, useState } from "react";
 
@@ -13,6 +12,7 @@ import { getApi, getApiDate } from "../../Services/getApi";
 
 const Main = () => {
   const [currencies, setCurrencies] = useState(null);
+  const [switched, setSwitched] = useState(true);
 
   const getResponseRechart = async () => {
     const res = await getApi();
@@ -31,7 +31,7 @@ const Main = () => {
           (elem.rate / currenciesResYestarday[index]) * 100 -
           100
         ).toFixed(2),
-        data: [
+        dataRechart: [
           {
             dateCur: yestardateToLocal,
             value: currenciesResYestarday[index].toFixed(2),
@@ -70,11 +70,16 @@ const Main = () => {
   useEffect(() => {
     getResponseRechart();
   }, []);
-  console.log(currencies);
+
   return (
-    <div className={style.cardconteiner}>
-      <CheckBox />
-      {currencies && <CardGraphics currencies={currencies} />}
+    <div className={style.body}>
+      {currencies && (
+        <CardGraphics
+          currencies={currencies}
+          switched={switched}
+          setSwitched={setSwitched}
+        />
+      )}
     </div>
   );
 };

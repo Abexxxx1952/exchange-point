@@ -1,12 +1,11 @@
 import "./CheckBox.css";
 import React from "react";
-import { useState } from "react";
 
-const CheckBox = () => {
-  const [switched, setSwitched] = useState(true);
+const CheckBox = ({ switched, setSwitched }) => {
   const SwitchHandler = () => {
     switched ? setSwitched(false) : setSwitched(true);
   };
+
   return (
     <div className="checkbox">
       <div className={`inner ${switched ? "" : "active"}`}>

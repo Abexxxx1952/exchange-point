@@ -1,11 +1,11 @@
 .body {
   margin-top: 100px;
-  background-color: #8bccca;
+  background-color: #326460;
 }
 .row {
   display: flex;
   flex-wrap: wrap;
-  max-width: 1600px;
+  max-width: 1800px;
   align-items: center;
   gap: 40px;
   width: 100%;
@@ -17,6 +17,13 @@
   background: transparent;
   /*  margin-top: 120px; */
   justify-content: center;
+  position: relative;
+}
+
+.checkbox__conteiner {
+  position: absolute;
+  top: 2%;
+  left: 5%;
 }
 
 .card {
@@ -60,6 +67,6 @@
 }
 
 .card__graphic {
-  width: 350px;
-  height: 200px;
+  width: 400px;
+  height: 230px;
 }

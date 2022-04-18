@@ -1,7 +1,7 @@
 import React from "react";
 import { ResponsiveLine } from "@nivo/line";
 
-const Graphicc = ({}) => {
+const Graphicc = ({ data }) => {
   return (
     <ResponsiveLine
       data={data}
