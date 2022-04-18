@@ -14,7 +14,7 @@ const Main = () => {
   const [currencies, setCurrencies] = useState(null);
   const [switched, setSwitched] = useState(true);
 
-  const getResponseRechart = async () => {
+  const getResponsecСhart = async () => {
     const res = await getApi();
     const resYestarday = await getApiDate(requestDate);
 
@@ -23,6 +23,74 @@ const Main = () => {
     });
 
     const currenciesRes = res.map((elem, index) => {
+      /*       switched
+        ? (datachart = [
+            {
+              dateCur: yestardateToLocal,
+              value: currenciesResYestarday[index].toFixed(2),
+            },
+            { dateCur: dateToLocal, value: elem.rate.toFixed(2) },
+          ])
+        : (datachart = [
+            {
+              id: elem.txt,
+              color: "hsl(139, 70%, 50%)",
+              data: [
+                {
+                  x: yestardateToLocal,
+                  y: currenciesResYestarday[index].toFixed(2),
+                },
+                {
+                  x: dateToLocal,
+                  y: elem.rate.toFixed(2),
+                },
+              ],
+            },
+          ]) */
+
+      /* const datachart = switched
+        ? [
+            {
+              dateCur: yestardateToLocal,
+              value: currenciesResYestarday[index].toFixed(2),
+            },
+            { dateCur: dateToLocal, value: elem.rate.toFixed(2) },
+          ]
+        : [
+            {
+              id: elem.txt,
+
+              data: [
+                {
+                  x: yestardateToLocal,
+                  y: currenciesResYestarday[index].toFixed(2),
+                },
+                {
+                  x: dateToLocal,
+                  y: elem.rate.toFixed(2),
+                },
+              ],
+            },
+          ]; */
+
+      if (switched) {
+        return {
+          currency: elem.txt,
+          value: elem.rate,
+          id: elem.r030,
+          difference: (
+            (elem.rate / currenciesResYestarday[index]) * 100 -
+            100
+          ).toFixed(2),
+          dataRechart: [
+            {
+              dateCur: yestardateToLocal,
+              value: currenciesResYestarday[index].toFixed(2),
+            },
+            { dateCur: dateToLocal, value: elem.rate.toFixed(2) },
+          ],
+        };
+      }
       return {
         currency: elem.txt,
         value: elem.rate,
@@ -31,12 +99,21 @@ const Main = () => {
           (elem.rate / currenciesResYestarday[index]) * 100 -
           100
         ).toFixed(2),
-        dataRechart: [
+        dataNivo: [
           {
-            dateCur: yestardateToLocal,
-            value: currenciesResYestarday[index].toFixed(2),
+            id: elem.txt,
+
+            data: [
+              {
+                x: yestardateToLocal,
+                y: currenciesResYestarday[index].toFixed(2),
+              },
+              {
+                x: dateToLocal,
+                y: elem.rate.toFixed(2),
+              },
+            ],
           },
-          { dateCur: dateToLocal, value: elem.rate.toFixed(2) },
         ],
       };
     });
@@ -63,13 +140,14 @@ const Main = () => {
     ];
  */
     /* setCurrencies(currenciesRes); */
+    const slisedres = currenciesRes.slice(0, 10);
 
     setCurrencies(currenciesRes);
   };
 
   useEffect(() => {
-    getResponseRechart();
-  }, []);
+    getResponsecСhart();
+  });
 
   return (
     <div className={style.body}>

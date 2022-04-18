@@ -23,11 +23,9 @@ const CardGraphics = ({ currencies, switched, setSwitched }) => {
                 <span> {difference} %</span>
               </div>
               <div className={style.card__graphic}>
-                {switched ? (
-                  <GraphicRechart data={dataRechart} />
-                ) : (
-                  <GraphicNivo data={dataNivo} />
-                )}
+                {switched
+                  ? dataRechart && <GraphicRechart data={dataRechart} />
+                  : dataNivo && <GraphicNivo data={dataNivo} />}
               </div>
             </div>
           )
