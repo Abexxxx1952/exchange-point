@@ -1,8 +1,28 @@
 .body {
   margin-top: 100px;
   background-color: #326460;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
+
+.inputsearch__conteiner {
+  margin-top: 30px;
+}
+
 .row {
+  position: relative;
+}
+
+.checkbox__conteiner {
+  position: absolute;
+  top: 4%;
+  left: 5%;
+}
+
+.card__conteiner {
   display: flex;
   flex-wrap: wrap;
   max-width: 1800px;
@@ -17,13 +37,6 @@
   background: transparent;
   /*  margin-top: 120px; */
   justify-content: center;
-  position: relative;
-}
-
-.checkbox__conteiner {
-  position: absolute;
-  top: 2%;
-  left: 5%;
 }
 
 .card {

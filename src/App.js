@@ -8,6 +8,10 @@ import GraphicOneValute from "./Components/GraphicOneValute/GraphicOneValute";
 import About from "./Components/About/About";
 
 function App() {
+  const myOnscroll = () => {
+    console.log(22222);
+  };
+
   return (
     <BrowserRouter>
       <Header />

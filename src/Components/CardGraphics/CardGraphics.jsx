@@ -1,35 +1,61 @@
 import style from "./CardGraphics.module.css";
 import GraphicRechart from "../Graphic/GraphicRechart";
 import GraphicNivo from "../Graphic/GraphicNivo";
+import InputSearch from "../InputSearch/InputSearch";
 import CheckBox from "../CheckBox/CheckBox";
+import { useState, useEffect } from "react";
+import useLazyScrollLoading from "../../Services/useLazyScrollLoading";
 
 const CardGraphics = ({ currencies, switched, setSwitched }) => {
+  const initialMaxCount = 12;
+  const addStep = 6;
+
+  const [refContainer, maxCount] = useLazyScrollLoading(
+    initialMaxCount,
+    currencies.length,
+    addStep
+  );
+  refContainer.current = window.document;
+
+  const [currenciesSliced, setCurrenciesSliced] = useState(
+    currencies.slice(0, maxCount)
+  );
+
+  useEffect(() => {
+    setCurrenciesSliced(currencies.slice(0, maxCount));
+  }, [maxCount, currencies]);
+
   return (
     <div className={style.body}>
+      <div className={style.inputsearch__conteiner}>
+        <InputSearch />
+      </div>
       <div className={style.row}>
         <div className={style.checkbox__conteiner}>
           <CheckBox switched={switched} setSwitched={setSwitched} />
         </div>
-        {currencies.map(
-          ({ currency, value, id, dataRechart, dataNivo, difference }) => (
-            <div className={style.card} key={id}>
-              <div className={style.card__header}>
-                <div>{currency}</div>
+        <div className={style.card__conteiner}>
+          {currenciesSliced.map(
+            ({ currency, value, id, dataRechart, dataNivo, difference }) => (
+              <div className={style.card} key={id}>
+                <div className={style.card__header}>
+                  <div>{currency}</div>
 
-                <p>24h</p>
+                  <p>24h</p>
+                </div>
+                <div className={style.card__value}>
+                  <h3>{value}</h3>
+                  <span> {difference} %</span>
+                </div>
+                <div className={style.card__graphic}>
+                  {switched
+                    ? dataRechart && <GraphicRechart data={dataRechart} />
+                    : dataNivo && <GraphicNivo data={dataNivo} />}
+                </div>
               </div>
-              <div className={style.card__value}>
-                <h3>{value}</h3>
-                <span> {difference} %</span>
-              </div>
-              <div className={style.card__graphic}>
-                {switched
-                  ? dataRechart && <GraphicRechart data={dataRechart} />
-                  : dataNivo && <GraphicNivo data={dataNivo} />}
-              </div>
-            </div>
-          )
-        )}
+            )
+          )}
+        </div>
       </div>
     </div>
   );
