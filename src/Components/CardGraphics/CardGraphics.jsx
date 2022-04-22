@@ -6,7 +6,13 @@ import CheckBox from "../CheckBox/CheckBox";
 import { useState, useEffect } from "react";
 import useLazyScrollLoading from "../../Services/useLazyScrollLoading";
 
+import useAutocomplete from "../../Services/useAutocomplete";
+
 const CardGraphics = ({ currencies, switched, setSwitched }) => {
+  const [inputValue, setInputValue] = useState("");
+
+  const filteredCurrencies = useAutocomplete(inputValue, currencies);
+
   const initialMaxCount = 12;
   const addStep = 6;
 
@@ -18,17 +24,21 @@ const CardGraphics = ({ currencies, switched, setSwitched }) => {
   refContainer.current = window.document;
 
   const [currenciesSliced, setCurrenciesSliced] = useState(
-    currencies.slice(0, maxCount)
+    filteredCurrencies.slice(0, maxCount)
   );
 
   useEffect(() => {
-    setCurrenciesSliced(currencies.slice(0, maxCount));
-  }, [maxCount, currencies]);
+    setCurrenciesSliced(filteredCurrencies.slice(0, maxCount));
+  }, [maxCount, currencies, inputValue]);
 
   return (
     <div className={style.body}>
       <div className={style.inputsearch__conteiner}>
-        <InputSearch />
+        <InputSearch
+          inputValue={inputValue}
+          setInputValue={setInputValue}
+          currencies={currencies}
+        />
       </div>
       <div className={style.row}>
         <div className={style.checkbox__conteiner}>

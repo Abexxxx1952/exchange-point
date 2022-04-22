@@ -9,7 +9,7 @@ const CheckBox = ({ switched, setSwitched }) => {
   return (
     <div className="checkbox">
       <div className={`inner ${switched ? "" : "active"}`}>
-        <div className="toggle" onClick={SwitchHandler}></div>
+        <div className="toggle__checkbox" onClick={SwitchHandler}></div>
       </div>
     </div>
   );
