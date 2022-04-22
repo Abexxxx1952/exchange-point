@@ -51,6 +51,7 @@
   max-width: 25%;
   flex: 0 0 25%;
   background-color: rgb(71, 176, 211);
+  cursor: pointer;
 }
 .card__header {
   display: flex;

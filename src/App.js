@@ -18,7 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/map" element={<Map />} />
-        <Route path="/test" element={<GraphicOneValute />} />
+        <Route path="/graphicOneValute:cc" element={<GraphicOneValute />} />
         <Route path="/about" element={<About />} />
       </Routes>
       {/* <Footer /> */}

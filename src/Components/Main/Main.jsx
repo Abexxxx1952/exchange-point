@@ -3,12 +3,9 @@ import CardGraphics from "../CardGraphics/CardGraphics";
 
 import { useEffect, useState, useCallback } from "react";
 
-import {
-  dateToLocal,
-  yestardateToLocal,
-  requestDate,
-} from "../../Services/constants";
+import { dateToLocal, yestardateToLocal } from "../../Services/constants";
 import { getApi, getApiDate } from "../../Services/getApi";
+import DayLeft from "../../Services/DayLeft";
 
 const Main = () => {
   const [currencies, setCurrencies] = useState(null);
@@ -17,7 +14,7 @@ const Main = () => {
 
   const getResponsecСhart = useCallback(async () => {
     const res = await getApi();
-    const resYestarday = await getApiDate(requestDate);
+    const resYestarday = await getApiDate(DayLeft(1));
 
     const currenciesResYestarday = resYestarday.map((elem) => {
       return elem.rate;
@@ -29,6 +26,7 @@ const Main = () => {
           currency: elem.txt,
           value: elem.rate,
           id: elem.r030,
+          cc: elem.cc,
           difference: (
             (elem.rate / currenciesResYestarday[index]) * 100 -
             100

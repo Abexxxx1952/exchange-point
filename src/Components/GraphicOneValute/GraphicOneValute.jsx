@@ -1,63 +1,64 @@
 import React from "react";
-import GraphicRechart from "../Graphic/GraphicRechart";
-
 import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
 
-import {
-  dateToLocal,
-  yestardateToLocal,
-  requestDate,
-} from "../../Services/constants";
-import { getApi, getApiDate } from "../../Services/getApi";
+import GraphicChartJS from "../Graphic/GraphicChartJS";
+
+import { getApiDateCurrencie } from "../../Services/getApi";
+import { API_URL_GOV_DATE_CURRENCIS } from "../../Services/constants";
+import DayLeft from "../../Services/DayLeft";
 
 import style from "./GraphicOneValute.module.css";
 
 const GraphicOneValute = () => {
-  const data = [
-    {
-      dateCur: "Date A",
-      Currensic: 4000,
-    },
-    {
-      dateCur: "Date B",
-      Currensic: 3000,
-    },
-  ];
+  let { cc } = useParams();
 
-  const [currencies, setCurrencies] = useState(null);
+  const [data, setData] = useState();
 
   const getResponse = async () => {
-    const res = await getApi();
-    const resYestarday = await getApiDate(requestDate);
+    const resFive = await getApiDateCurrencie(DayLeft(5), cc);
+    const resFour = await getApiDateCurrencie(DayLeft(4), cc);
+    const resThree = await getApiDateCurrencie(DayLeft(3), cc);
+    const resTwo = await getApiDateCurrencie(DayLeft(2), cc);
+    const resOne = await getApiDateCurrencie(DayLeft(1), cc);
+    const resZero = await getApiDateCurrencie(DayLeft(0), cc);
 
-    const currenciesResYestarday = resYestarday.map((elem) => {
-      return elem.rate;
-    });
-    let totalres = [];
-    res.forEach((elem, index) => {
-      totalres.push({
-        dateCur: yestardateToLocal,
-        [elem.txt]: currenciesResYestarday[index],
-      });
+    console.log(API_URL_GOV_DATE_CURRENCIS(DayLeft(1), cc));
+    console.log(DayLeft(3)[1]);
+    console.log(DayLeft(3)[0]);
+    console.log(resOne[0]);
 
-      totalres.push({ dateCur: dateToLocal, [elem.txt]: elem.rate });
-    });
-
-    /* const { UAH, EUR, RUB, BYN, PLN, KZT } = res.conversion_rates;
-    console.log(UAH, EUR, RUB, BYN, PLN, KZT);
-
-    const currenciesRes = [
-      { currency: "UAH", value: UAH },
-      { currency: "EUR", value: EUR },
-      { currency: "RUB", value: RUB },
-      { currency: "BYN", value: BYN },
-      { currency: "PLN", value: PLN },
-      { currency: "KZT", value: KZT },
+    const labels = [
+      resFive[0].exchangedate,
+      resFour[0].exchangedate,
+      resThree[0].exchangedate,
+      resTwo[0].exchangedate,
+      resOne[0].exchangedate,
+      resZero[0].exchangedate,
     ];
- */
-    /* setCurrencies(currenciesRes); */
 
-    setCurrencies(...totalres);
+    const oneCurr = {
+      labels,
+      title: resOne[0].txt,
+      datasets: [
+        {
+          data: [
+            resFive[0].rate,
+            resFour[0].rate,
+            resThree[0].rate,
+            resTwo[0].rate,
+            resOne[0].rate,
+            resZero[0].rate,
+          ],
+          borderColor: "rgb(255, 99, 132)",
+          backgroundColor: "rgba(255, 99, 132, 0.5)",
+        },
+      ],
+    };
+
+    console.log(labels);
+
+    setData(oneCurr);
   };
 
   useEffect(() => {
@@ -66,7 +67,12 @@ const GraphicOneValute = () => {
 
   return (
     <div className={style.container}>
-      <GraphicRechart data={data} />
+      <div className={style.link__conteiner}>
+        <Link to="/">Назат в прошлое</Link>
+      </div>
+      <div className={style.graphicCharConteiner}>
+        {data && <GraphicChartJS data={data} />}
+      </div>
     </div>
   );
 };

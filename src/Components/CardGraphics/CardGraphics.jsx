@@ -4,6 +4,7 @@ import GraphicNivo from "../Graphic/GraphicNivo";
 import InputSearch from "../InputSearch/InputSearch";
 import CheckBox from "../CheckBox/CheckBox";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import useLazyScrollLoading from "../../Services/useLazyScrollLoading";
 
 import useAutocomplete from "../../Services/useAutocomplete";
@@ -31,6 +32,13 @@ const CardGraphics = ({ currencies, switched, setSwitched }) => {
     setCurrenciesSliced(filteredCurrencies.slice(0, maxCount));
   }, [maxCount, currencies, inputValue]);
 
+  let navigate = useNavigate();
+
+  const cardClick = (cc) => {
+    console.log(cc);
+    navigate(`/graphicOneValute${cc}`);
+  };
+
   return (
     <div className={style.body}>
       <div className={style.inputsearch__conteiner}>
@@ -46,8 +54,22 @@ const CardGraphics = ({ currencies, switched, setSwitched }) => {
         </div>
         <div className={style.card__conteiner}>
           {currenciesSliced.map(
-            ({ currency, value, id, dataRechart, dataNivo, difference }) => (
-              <div className={style.card} key={id}>
+            ({
+              currency,
+              value,
+              id,
+              dataRechart,
+              dataNivo,
+              difference,
+              cc,
+            }) => (
+              <div
+                className={style.card}
+                key={id}
+                onClick={() => {
+                  cardClick(cc);
+                }}
+              >
                 <div className={style.card__header}>
                   <div>{currency}</div>
 
