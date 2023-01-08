@@ -23,7 +23,7 @@ const InputSearch = ({ inputValue, setInputValue, currencies }) => {
     const focusOff = () => {
       setFocus(false);
     };
-    setTimeout(focusOff, 100);
+    setTimeout(focusOff, 150);
   };
 
   return (

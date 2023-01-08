@@ -27,8 +27,8 @@ const GraphicRechart = ({ data }) => {
       >
         <defs>
           <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor="#cfe4e6" stopOpacity={0.6} />
-            <stop offset="95%" stopColor="#cfe4e6" stopOpacity={0.05} />
+            <stop offset="5%" stopColor="#675edb" stopOpacity={0.8} />
+            <stop offset="95%" stopColor="#675edb" stopOpacity={0.05} />
           </linearGradient>
         </defs>
         <Area
@@ -46,7 +46,7 @@ const GraphicRechart = ({ data }) => {
           axisLine={false}
           tickLine={false}
           type="number"
-          domain={["dataMin-0.02", "dataMax"]}
+          domain={["dataMin-0.02", "dataMax+0.02"]}
           padding={{ bottom: 10 }}
         >
           <Label value="Value" offset={0} angle={-90} position="left" />

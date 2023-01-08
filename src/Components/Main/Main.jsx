@@ -44,6 +44,7 @@ const Main = () => {
         currency: elem.txt,
         value: elem.rate,
         id: elem.r030,
+        cc: elem.cc,
         difference: (
           (elem.rate / currenciesResYestarday[index]) * 100 -
           100
@@ -75,7 +76,7 @@ const Main = () => {
   }, [getResponsecСhart]);
 
   return (
-    <div className={style.body}>
+    <>
       {currencies && (
         <CardGraphics
           currencies={currencies}
@@ -83,7 +84,7 @@ const Main = () => {
           setSwitched={setSwitched}
         />
       )}
-    </div>
+    </>
   );
 };
 

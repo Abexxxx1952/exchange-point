@@ -1,0 +1,21 @@
+.container {
+  background-color: #326460;
+  margin-top: 100px;
+  display: flex;
+}
+
+.container__text {
+  width: 1400px;
+  margin-right: auto;
+  margin-left: auto;
+  color: aliceblue;
+}
+
+h1 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+p {
+  margin-bottom: 20px;
+}

@@ -35,7 +35,6 @@ const CardGraphics = ({ currencies, switched, setSwitched }) => {
   let navigate = useNavigate();
 
   const cardClick = (cc) => {
-    console.log(cc);
     navigate(`/graphicOneValute${cc}`);
   };
 
@@ -48,21 +47,14 @@ const CardGraphics = ({ currencies, switched, setSwitched }) => {
           currencies={currencies}
         />
       </div>
-      <div className={style.row}>
-        <div className={style.checkbox__conteiner}>
-          <CheckBox switched={switched} setSwitched={setSwitched} />
-        </div>
-        <div className={style.card__conteiner}>
-          {currenciesSliced.map(
-            ({
-              currency,
-              value,
-              id,
-              dataRechart,
-              dataNivo,
-              difference,
-              cc,
-            }) => (
+      <div className={style.checkbox__conteiner}>
+        <CheckBox switched={switched} setSwitched={setSwitched} />
+      </div>
+
+      <div className={style.card__conteiner}>
+        {currenciesSliced.map(
+          ({ currency, value, id, dataRechart, dataNivo, difference, cc }) => (
+            <div className={style.card__under}>
               <div
                 className={style.card}
                 key={id}
@@ -85,9 +77,9 @@ const CardGraphics = ({ currencies, switched, setSwitched }) => {
                     : dataNivo && <GraphicNivo data={dataNivo} />}
                 </div>
               </div>
-            )
-          )}
-        </div>
+            </div>
+          )
+        )}
       </div>
     </div>
   );

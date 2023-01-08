@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import GraphicChartJS from "../Graphic/GraphicChartJS";
 
@@ -12,7 +12,10 @@ import style from "./GraphicOneValute.module.css";
 
 const GraphicOneValute = () => {
   let { cc } = useParams();
-
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate(-1);
+  };
   const [data, setData] = useState();
 
   const getResponse = async () => {
@@ -68,7 +71,7 @@ const GraphicOneValute = () => {
   return (
     <div className={style.container}>
       <div className={style.link__conteiner}>
-        <Link to="/">Назат в прошлое</Link>
+        <div onClick={goBack}>Назат в прошлое</div>
       </div>
       <div className={style.graphicCharConteiner}>
         {data && <GraphicChartJS data={data} />}
