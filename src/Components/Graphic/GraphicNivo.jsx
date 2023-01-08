@@ -49,4 +49,4 @@ const GraphicNivo = ({ data }) => {
   );
 };
 
-export default GraphicNivo;
+export { GraphicNivo };

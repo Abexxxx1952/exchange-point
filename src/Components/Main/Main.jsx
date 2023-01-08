@@ -1,5 +1,5 @@
 import style from "./Main.module.css";
-import CardGraphics from "../CardGraphics/CardGraphics";
+import { CardGraphics } from "../CardGraphics/CardGraphics";
 
 import { useEffect, useState, useCallback } from "react";
 
@@ -88,4 +88,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export { Main };

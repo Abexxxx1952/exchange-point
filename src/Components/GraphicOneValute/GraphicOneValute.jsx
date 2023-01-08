@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-import GraphicChartJS from "../Graphic/GraphicChartJS";
+import { GraphicChartJS } from "../Graphic/GraphicChartJS";
 
 import { getApiDateCurrencie } from "../../Services/getApi";
 import { API_URL_GOV_DATE_CURRENCIS } from "../../Services/constants";
@@ -80,4 +80,4 @@ const GraphicOneValute = () => {
   );
 };
 
-export default GraphicOneValute;
+export { GraphicOneValute };

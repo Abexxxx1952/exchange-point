@@ -1,5 +1,6 @@
-import style from "./Footer.module.css";
 import logo from "../../icons/logo1.png";
+
+import style from "./Footer.module.css";
 
 const Footer = () => {
   return (
@@ -27,4 +28,4 @@ const Footer = () => {
     </div>
   );
 };
-export default Footer;
+export { Footer };

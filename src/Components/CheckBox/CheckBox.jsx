@@ -1,11 +1,12 @@
-import "./CheckBox.css";
 import React from "react";
+
+import "./CheckBox.css";
 
 const CheckBox = ({ switched, setSwitched }) => {
   const SwitchHandler = () => {
     switched ? setSwitched(false) : setSwitched(true);
   };
-
+  console.log(switched);
   return (
     <div className="checkbox">
       <div className={`inner ${switched ? "" : "active"}`}>
@@ -15,4 +16,4 @@ const CheckBox = ({ switched, setSwitched }) => {
   );
 };
 
-export default CheckBox;
+export { CheckBox };

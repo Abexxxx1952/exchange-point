@@ -1,7 +1,7 @@
-import "./InputSearch.css";
 import React from "react";
-
 import { useState } from "react";
+
+import "./InputSearch.css";
 
 const InputSearch = ({ inputValue, setInputValue, currencies }) => {
   const onChangeInput = (e) => {
@@ -54,4 +54,4 @@ const InputSearch = ({ inputValue, setInputValue, currencies }) => {
   );
 };
 
-export default InputSearch;
+export { InputSearch };

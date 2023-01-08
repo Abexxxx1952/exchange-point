@@ -59,3 +59,6 @@
 .checkbox .inner.active {
   background: linear-gradient(5deg, #c25f0f, #dd7520);
 }
+.toggle__checkbox {
+  cursor: pointer;
+}

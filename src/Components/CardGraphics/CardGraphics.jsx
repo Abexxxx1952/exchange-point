@@ -1,16 +1,17 @@
-import style from "./CardGraphics.module.css";
-import GraphicRechart from "../Graphic/GraphicRechart";
-import GraphicNivo from "../Graphic/GraphicNivo";
-import InputSearch from "../InputSearch/InputSearch";
-import CheckBox from "../CheckBox/CheckBox";
-import { useState, useEffect } from "react";
+import { useState, useEffect, forwardRef } from "react";
 import { useNavigate } from "react-router-dom";
-import useLazyScrollLoading from "../../Services/useLazyScrollLoading";
 
+import { InputSearch } from "../InputSearch/InputSearch";
+import { CheckBox } from "../CheckBox/CheckBox";
+import { CardGraphicOne } from "../CardGraphicOne/CardGraphicOne";
+import useLazyScrollLoading from "../../Services/useLazyScrollLoadingIntersectionObserver";
 import useAutocomplete from "../../Services/useAutocomplete";
+
+import style from "./CardGraphics.module.css";
 
 const CardGraphics = ({ currencies, switched, setSwitched }) => {
   const [inputValue, setInputValue] = useState("");
+  const navigate = useNavigate();
 
   const filteredCurrencies = useAutocomplete(inputValue, currencies);
 
@@ -22,7 +23,6 @@ const CardGraphics = ({ currencies, switched, setSwitched }) => {
     currencies.length,
     addStep
   );
-  refContainer.current = window.document;
 
   const [currenciesSliced, setCurrenciesSliced] = useState(
     filteredCurrencies.slice(0, maxCount)
@@ -31,12 +31,6 @@ const CardGraphics = ({ currencies, switched, setSwitched }) => {
   useEffect(() => {
     setCurrenciesSliced(filteredCurrencies.slice(0, maxCount));
   }, [maxCount, currencies, inputValue]);
-
-  let navigate = useNavigate();
-
-  const cardClick = (cc) => {
-    navigate(`/graphicOneValute${cc}`);
-  };
 
   return (
     <div className={style.body}>
@@ -52,37 +46,45 @@ const CardGraphics = ({ currencies, switched, setSwitched }) => {
       </div>
 
       <div className={style.card__conteiner}>
-        {currenciesSliced.map(
-          ({ currency, value, id, dataRechart, dataNivo, difference, cc }) => (
-            <div className={style.card__under}>
+        {currenciesSliced.map((elem, index) => {
+          if (currenciesSliced.length === index + 1) {
+            return (
               <div
-                className={style.card}
-                key={id}
-                onClick={() => {
-                  cardClick(cc);
-                }}
+                className={style.card__under}
+                key={elem.id}
+                ref={refContainer}
               >
-                <div className={style.card__header}>
-                  <div>{currency}</div>
-
-                  <p>24h</p>
-                </div>
-                <div className={style.card__value}>
-                  <h3>{value}</h3>
-                  <span> {difference} %</span>
-                </div>
-                <div className={style.card__graphic}>
-                  {switched
-                    ? dataRechart && <GraphicRechart data={dataRechart} />
-                    : dataNivo && <GraphicNivo data={dataNivo} />}
-                </div>
+                <CardGraphicOne
+                  currency={elem.currency}
+                  value={elem.value}
+                  id={elem.id}
+                  dataRechart={elem?.dataRechart}
+                  dataNivo={elem?.dataNivo}
+                  difference={elem.difference}
+                  cc={elem.cc}
+                  switched={switched}
+                />
               </div>
+            );
+          }
+          return (
+            <div className={style.card__under} key={elem.id}>
+              <CardGraphicOne
+                currency={elem.currency}
+                value={elem.value}
+                id={elem.id}
+                dataRechart={elem?.dataRechart}
+                dataNivo={elem?.dataNivo}
+                difference={elem.difference}
+                cc={elem.cc}
+                switched={switched}
+              />
             </div>
-          )
-        )}
+          );
+        })}
       </div>
     </div>
   );
 };
 
-export default CardGraphics;
+export { CardGraphics };

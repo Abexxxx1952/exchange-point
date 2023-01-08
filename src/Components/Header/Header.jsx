@@ -1,7 +1,9 @@
-import style from "./Header.module.css";
+import { NavLink } from "react-router-dom";
+
 import icon from "../../icons/exchange.svg";
 import logo from "../../icons/logo1.png";
-import { NavLink } from "react-router-dom";
+
+import style from "./Header.module.css";
 
 const Header = () => {
   return (
@@ -14,7 +16,9 @@ const Header = () => {
             </NavLink>
           </div>
           <div className={style.navbar__logo}>
-            <img src={logo} alt="logo" />
+            <NavLink to="/">
+              <img src={logo} alt="logo" />
+            </NavLink>
           </div>
 
           <div className={style.main__nav}>
@@ -32,4 +36,4 @@ const Header = () => {
     </div>
   );
 };
-export default Header;
+export { Header };

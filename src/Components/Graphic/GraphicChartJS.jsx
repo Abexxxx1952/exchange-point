@@ -46,4 +46,4 @@ const GraphicChartJS = ({ data }) => {
   return <Line options={options} data={data} />;
 };
 
-export default GraphicChartJS;
+export { GraphicChartJS };

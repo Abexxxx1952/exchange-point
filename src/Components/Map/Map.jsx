@@ -16,4 +16,4 @@ const Map = () => {
   );
 };
 
-export default Map;
+export { Map };

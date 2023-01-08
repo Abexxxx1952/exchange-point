@@ -1,3 +1,4 @@
+import React from "react";
 import {
   AreaChart,
   Area,
@@ -8,8 +9,6 @@ import {
   ResponsiveContainer,
   Label,
 } from "recharts";
-
-import React from "react";
 
 const GraphicRechart = ({ data }) => {
   return (
@@ -57,4 +56,4 @@ const GraphicRechart = ({ data }) => {
   );
 };
 
-export default GraphicRechart;
+export { GraphicRechart };

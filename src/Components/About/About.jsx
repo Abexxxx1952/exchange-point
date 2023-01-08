@@ -1,5 +1,10 @@
 import style from "./About.module.css";
+
 const About = () => {
+  const ThrowErrorFn = () => {
+    throw new Error("Сайт поломан");
+  };
+
   return (
     <div className={style.container}>
       <div className={style.container__text}>
@@ -66,8 +71,11 @@ const About = () => {
           прибыли, даже самыми беспринципными способыми. Поэтому выбирают нас.
         </p>
       </div>
+      <button className={style.container__error_button} onClick={ThrowErrorFn}>
+        Поломать сайт
+      </button>
     </div>
   );
 };
 
-export default About;
+export { About };
