@@ -1,24 +1,30 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ErrorBoundary } from "react-error-boundary";
-import { Header } from "./Components/Header/Header";
-import { Main } from "./Components/Main/Main";
-import { Footer } from "./Components/Footer/Footer";
-import { Map } from "./Components/Map/Map";
-import { GraphicOneValute } from "./Components/GraphicOneValute/GraphicOneValute";
-import { About } from "./Components/About/About";
-import { NotFoundPage } from "./Components/NotFoundPage/NotFoundPage";
-import { ErrorFallback } from "./Components/ErrorFallback/ErrorFallback";
+import { Header } from "./Components/Header";
+import { Main } from "./Pages/Main";
+import { Footer } from "./Components/Footer";
+import { Map } from "./Pages/Map";
+import { GraphicOneValuta } from "./Pages/GraphicOneValuta";
+import { About } from "./Pages/About";
+import { NotFoundPage } from "./Pages/NotFoundPage";
+import { ErrorFallback } from "./Pages/ErrorFallback";
+import { Loader } from "./Components/Loader";
+import { MENU_ITEMS } from "./Services/constants";
 
 function App() {
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <BrowserRouter>
-        <Header />
+        <Header menuItems={MENU_ITEMS} />
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/map" element={<Map />} />
-          <Route path="/graphicOneValute:cc" element={<GraphicOneValute />} />
+          <Route
+            path="/graphicOneValuta/:currentCurrency"
+            element={<GraphicOneValuta />}
+          />
           <Route path="/about" element={<About />} />
+          <Route path="/loader" element={<Loader />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <Footer />

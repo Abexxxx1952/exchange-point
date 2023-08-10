@@ -14,4 +14,4 @@ const DayLeft = (day) => {
   return `${Year}${Month()}${Day()}`;
 };
 
-export default DayLeft;
+export { DayLeft };

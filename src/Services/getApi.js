@@ -1,20 +1,43 @@
 import {
   API_URL_GOV,
   API_URL_GOV_DATE,
-  API_URL_GOV_DATE_CURRENCIS,
+  API_URL_GOV_DATE_CURRENCIES,
 } from "./constants";
 
 export const getApi = async () => {
-  const res = await fetch(API_URL_GOV);
-  return await res.json();
+  try {
+    const response = await fetch(API_URL_GOV);
+
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+
+    return await response.json();
+  } catch (error) {
+    throw new Error(error.message);
+  }
 };
 
 export const getApiDate = async (date) => {
-  const res = await fetch(API_URL_GOV_DATE(date));
-  return await res.json();
+  try {
+    const response = await fetch(API_URL_GOV_DATE(date));
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return await response.json();
+  } catch (error) {
+    throw new Error(error.message);
+  }
 };
 
-export const getApiDateCurrencie = async (date, cur) => {
-  const res = await fetch(API_URL_GOV_DATE_CURRENCIS(date, cur));
-  return await res.json();
+export const getApiDateCurrency = async (date, cur) => {
+  try {
+    const response = await fetch(API_URL_GOV_DATE_CURRENCIES(date, cur));
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return await response.json();
+  } catch (error) {
+    throw new Error(error.message);
+  }
 };

@@ -1,0 +1,35 @@
+.container {
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+
+  background-color: rgb(50, 100, 96);
+  width: auto;
+  height: 800px;
+}
+
+@media screen and (max-width: 810px) {
+  .container {
+    padding: 15px;
+    height: 700px;
+    margin-top: 80px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .container {
+    padding: 15px;
+    height: 650px;
+    margin-top: 65px;
+  }
+}
+
+@media screen and (max-height: 420px) {
+  .container {
+    padding: 15px;
+    height: 270px;
+    margin-top: 65px;
+  }
+}

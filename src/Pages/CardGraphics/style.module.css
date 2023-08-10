@@ -1,0 +1,157 @@
+.body {
+  margin-top: 100px;
+  background-color: #326460;
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 600px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-bottom: 100px;
+}
+
+.inputsearch__container {
+  margin-top: 30px;
+}
+
+.checkbox__container {
+  position: absolute;
+  top: 15%;
+  left: 3%;
+  z-index: 2;
+}
+
+.card__container {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+
+  padding: 30px 30px 0px 105px;
+
+  margin-top: 20px;
+}
+
+.card__under {
+  position: relative;
+  width: 500px;
+}
+.card__under:before {
+  content: "";
+  position: absolute;
+  border-radius: 15px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    #fb0094,
+    #0000ff,
+    #00ff00,
+    #ffff00,
+    #ff0000,
+    #fb0094,
+    #0000ff,
+    #00ff00,
+    #ffff00,
+    #ff0000
+  );
+  animation: animate 20s linear infinite;
+  background-size: 400%;
+  opacity: 0;
+  transition: 0.5s;
+}
+.card__under:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    #fb0094,
+    #00f,
+    #0f0,
+    #ff0,
+    #f00,
+    #fb0094,
+    #00f,
+    #0f0,
+    #ff0,
+    #f00
+  );
+  animation: animate 20s linear infinite;
+  background-size: 400%;
+  filter: blur(20px);
+  opacity: 0;
+  transition: 0.5s;
+}
+.card__under:hover:before,
+.card__under:hover:after {
+  opacity: 1;
+}
+@keyframes animate {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 300% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+@media screen and (max-width: 1190px) {
+  .card__container {
+    padding: 30px 30px 10px 30px;
+  }
+  .card__under {
+    width: 800px;
+    margin-left: 100px;
+  }
+}
+@media screen and (max-width: 970px) {
+  .card__under {
+    width: 700px;
+    margin-left: 70px;
+  }
+}
+@media screen and (max-width: 810px) {
+  .body {
+    margin-top: 80px;
+  }
+  .card__under {
+    width: 650px;
+    margin-left: 50px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .body {
+    margin-top: 70px;
+  }
+  .card__container {
+    margin-top: 0px;
+  }
+  .card__under {
+    width: var(--cart-width-ml);
+    margin-left: 0px;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .card__under {
+    width: var(--cart-width-ms);
+  }
+}
+
+@media screen and (max-height: 420px) {
+  .body {
+    margin-top: 70px;
+  }
+}

@@ -1,4 +1,3 @@
-import React from "react";
 import {
   AreaChart,
   Area,
@@ -45,7 +44,7 @@ const GraphicRechart = ({ data }) => {
           axisLine={false}
           tickLine={false}
           type="number"
-          domain={["dataMin-0.02", "dataMax+0.02"]}
+          domain={["auto", "auto"]}
           padding={{ bottom: 10 }}
         >
           <Label value="Value" offset={0} angle={-90} position="left" />

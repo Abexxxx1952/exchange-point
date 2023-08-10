@@ -1,5 +1,3 @@
-import React from "react";
-
 import { ResponsiveBump } from "@nivo/bump";
 
 const GraphicNivo = ({ data }) => {
