@@ -4,7 +4,7 @@ import style from "./style.module.css";
 
 const Footer = () => {
   return (
-    <div className={style.container}>
+    <footer className={style.container}>
       <div className={style.footer}>
         <div className={style.footer_logo}>
           <img src={logo} alt="logo" />
@@ -25,7 +25,7 @@ const Footer = () => {
           </span>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 export { Footer };

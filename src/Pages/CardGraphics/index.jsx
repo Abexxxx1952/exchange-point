@@ -32,7 +32,7 @@ const CardGraphics = ({ currencies, switched, setSwitched }) => {
   }, [maxCount, inputValue, currencies]);
 
   return (
-    <div className={style.body}>
+    <main className={style.body}>
       <div className={style.inputsearch__container}>
         <InputSearch
           inputValue={inputValue}
@@ -82,7 +82,7 @@ const CardGraphics = ({ currencies, switched, setSwitched }) => {
           );
         })}
       </div>
-    </div>
+    </main>
   );
 };
 

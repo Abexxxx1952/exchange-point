@@ -9,8 +9,8 @@ import style from "./style.module.css";
 
 const Header = ({ menuItems }) => {
   return (
-    <div className={style.container}>
-      <div className={style.navigation}>
+    <header className={style.container}>
+      <nav className={style.navigation}>
         <div className={style.row}>
           <div className={style.navbar__brand}>
             <NavLink to="/">
@@ -37,8 +37,8 @@ const Header = ({ menuItems }) => {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </nav>
+    </header>
   );
 };
 export { Header };

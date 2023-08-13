@@ -6,12 +6,12 @@ const NotFoundPage = () => {
   const location = useLocation();
 
   return (
-    <div className={styles.container}>
+    <main className={styles.container}>
       <img className={styles.img} src={img} alt="Not Found" />
       <p className={styles.text}>
         Axa-xa, Франклин не знает где это "<u>{location.pathname}</u>"
       </p>
-    </div>
+    </main>
   );
 };
 

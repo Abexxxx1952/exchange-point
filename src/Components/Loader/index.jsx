@@ -2,7 +2,7 @@ import style from "./style.module.css";
 
 const Loader = () => {
   return (
-    <div className={style.container}>
+    <main className={style.container}>
       <div className={style.spinner}>
         <div className={style.circle}>
           <span className={style.line}></span>
@@ -11,7 +11,7 @@ const Loader = () => {
           <span className={style.line}></span>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 

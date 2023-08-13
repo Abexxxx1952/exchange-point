@@ -5,7 +5,7 @@ import style from "./style.module.css";
 const About = () => {
   const { showBoundary } = useErrorBoundary();
   return (
-    <div className={style.container}>
+    <main className={style.container}>
       <div className={style.container__text}>
         <h1>Обменка Харьков: актуальный курс валют</h1>
         <p>
@@ -76,7 +76,7 @@ const About = () => {
       >
         Поломать сайт
       </button>
-    </div>
+    </main>
   );
 };
 
